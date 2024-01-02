@@ -9,16 +9,19 @@ export class CPInterceptor implements NestInterceptor {
     private token?: string;
 
     constructor(private httpService: HttpService) {
+        setTimeout(() => {
+            this.token = undefined;
+        }, 600000);
     }
 
     async intercept(context: ExecutionContext, next: CallHandler<any>): Promise<Observable<any>> {
 
         const ctx = context.switchToHttp();
-        const token_ = ctx.getRequest().headers['authorization'];
-
-        if (!token_) {
-            this.httpService.axiosRef.defaults.headers.common['authorization'] = this.token ?? await firstValueFrom(this.getNewToken());
-        }
+        // const token_ = ctx.getRequest().headers['authorization'];
+        //
+        // if (!token_) {
+        this.httpService.axiosRef.defaults.headers.common['authorization'] = this.token ?? await firstValueFrom(this.getNewToken());
+        // }
 
         return next.handle();
     }
