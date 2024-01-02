@@ -9,4 +9,5 @@ export interface Departure extends TransportItem{
     departure?: string;
     departureDelay?: number; //seconds
     departurePlatform?: string;
+    lastStation?: boolean;
 }

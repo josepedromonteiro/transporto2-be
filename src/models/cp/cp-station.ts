@@ -52,7 +52,8 @@ export function cpStationDepartureToDeparture(cpStationDeparture: CPStationStop)
         arrivalPlatform: cpStationDeparture.platform,
         departure: cpStationDeparture.departureTime && buildDate(moment(new Date()).format('YYYY.MM.DD'), cpStationDeparture.departureTime).toISOString(),
         departureDelay: cpStationDeparture.delay,
-        departurePlatform: cpStationDeparture.platform
+        departurePlatform: cpStationDeparture.platform,
+        lastStation: !cpStationDeparture.departureTime
     } as Departure;
 }
 
