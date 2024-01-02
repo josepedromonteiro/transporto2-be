@@ -1,5 +1,5 @@
 import {CallHandler, ExecutionContext, Injectable, NestInterceptor} from "@nestjs/common";
-import {catchError, firstValueFrom, map, Observable, take, tap} from "rxjs";
+import {firstValueFrom, map, Observable, take, tap} from "rxjs";
 import {HttpService} from "@nestjs/axios";
 import {stringify} from "qs";
 
@@ -38,6 +38,7 @@ export class CPInterceptor implements NestInterceptor {
             take(1),
             tap((value) => {
                 this.token = `Bearer ${value.data.access_token}`;
+                console.log(this.token)
             }),
             map((_) => this.token)
         );
