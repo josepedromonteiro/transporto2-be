@@ -76,9 +76,7 @@ export class CpController {
     @Get('departures')
     getDepartures(@Query('station') station: string,
                   @Query('date') date?: string) {
-
-        console.log(moment(date ?? new Date()).format('YYYY-MM-DD'));
-        const formattedDate = moment(date ?? new Date()).format('YYYY-MM-D');
+        const formattedDate = moment(date ?? new Date()).format('YYYY-MM-DD');
         return this.httpService.get<CPDepartures>(`https://api.cp.pt/cp-api/siv/stations/${station}/timetable/${formattedDate}`).pipe(
             take(1),
             tap((value) => {

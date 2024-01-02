@@ -41,7 +41,6 @@ export class CPInterceptor implements NestInterceptor {
             take(1),
             tap((value) => {
                 this.token = `Bearer ${value.data.access_token}`;
-                console.log(this.token)
             }),
             map((_) => this.token)
         );
